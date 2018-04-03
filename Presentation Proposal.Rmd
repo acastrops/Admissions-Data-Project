@@ -13,9 +13,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Intro  
-
-## Data
+## Intro & Data
 
 1. Admissions
     + `Decision` 
@@ -32,6 +30,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 Provide an at-a-glance way for prospective students to see what the average NCF student looks like and to see how they compare to the student body.
 
+## Goal and audience
+
+Provide an at-a-glance way for prospective students to see what the average NCF student looks like and to see how they compare to the student body.
+
+### `The user can:`
+
+1. Get stats for the average NCF student
+2. Enter their own stats to see how they compare
+3. Personalize their own dashboard with the information they want the most.
+
+## Goal and audience
+
+Provide an at-a-glance way for prospective students to see what the average NCF student looks like and to see how they compare to the student body.
+
 ### `The user can:`
 
 1. Get stats for the average NCF student
@@ -40,7 +52,7 @@ Provide an at-a-glance way for prospective students to see what the average NCF 
 
 ### `The school can:`
 
-1. Have a way to present key facts of interest to the students from the factbook in a way that doesn't overwhelm. 
+1. Have a way to present key facts of interest to the students from the factbook in a way that doesn't overwhelm.
 
 ## Overview and examples
 
@@ -62,5 +74,9 @@ Provide an at-a-glance way for prospective students to see what the average NCF 
 
 ## Discussion
 
-### When you applied to New College, what information did you wish you know? What information were you most interested in?
+### When you applied to college, what info did you wish you knew? 
+
+### What information were you most interested in?
+
+### Questions?
 
