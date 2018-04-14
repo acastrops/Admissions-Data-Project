@@ -11,9 +11,12 @@ window.onload = function(){
 							 parseFloat(form["act"].value))
 		const probPct = Math.round(prob * 100)
 		if (probPct || probPct === 0){
+
 			const displayedResult = document.getElementById("model-result-pct");
 			displayedResult.innerText = probPct + "%"
+
 			const modelResultDiv = document.getElementById("model-result");
+			modelResultDiv.classList.add("show")
 			modelResultDiv.classList.remove("d-none");
 		}
 		e.preventDefault();
@@ -28,7 +31,6 @@ const model = {
 
 const predict = function(gpa, sat, act){
 	let predictedLogit;
-	let scaledGpa = (gpa - ) / 
 	if (sat && act) {
 		const currentModel = model["both"]
 		predictedLogit = currentModel[0] + gpa * currentModel[1] + sat * currentModel[2] + act * currentModel[3]
