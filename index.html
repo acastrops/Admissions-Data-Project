@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>NCF Student Profile</title>
+  </head>
+  <body>
+    <div class="jumbotron text-light" style="background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); background-position: 33% 90%;">
+      <h1>NCF Student Profile</h1>
+    </div>
+    <div id="accordion">
+      <div class="card">
+        <div class="card-header" id="aoc-header">
+          <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#aoc-collapse" aria-expanded="true" aria-controls="aoc-collapse">
+              Area of Concentration (Major)
+            </button>
+          </h5>
+        </div>
+        <div class="collapse card-body" id="aoc-collapse">
+            <h1>Economics is the best AOC</h1>
+        </div>
+        <div class="card-header">
+          <h5 class="mb-0">
+              <button class="btn btn-link" data-toggle="collapse" data-target="#chances-collapse" aria-expanded="true" aria-controls="chances-collapse">
+              See My Chances
+            </button>
+          </h5>
+        </div>
+        <div class="collapse show card-body" id="chances-collapse">
+          <form>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col">
+                  <label for="gpa">GPA:</label>
+                  <input type="text" class="form-control" placeholder="GPA" id="gpa">
+                </div>
+                <div class="col">
+                  <label for="sat">SAT Score (Math+Verbal):</label>
+                  <input type="text" class="form-control" placeholder="SAT Score" id="sat">
+                </div>
+                <div class="col">
+                  <label for="act">ACT Score:</label>
+                  <input type="text" class="form-control" placeholder="ACT Score" id="act">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit" id="chances-submit">How do I fare?</button>
+            </div>
+          </form>
+          <div id="model-result" class=".d-none">
+            About <strong>50%</strong> of applicants with a similar profile as yours were accepted to New College.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/chances.js"></script>
+  </body>
+</html>
