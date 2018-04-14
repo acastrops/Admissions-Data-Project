@@ -34,20 +34,23 @@
           </h5>
         </div>
         <div class="collapse show card-body" id="chances-collapse">
-          <form>
+          <form id="chances">
             <div class="form-group">
               <div class="form-row">
                 <div class="col">
                   <label for="gpa">GPA:</label>
-                  <input type="text" class="form-control" placeholder="GPA" id="gpa">
+                  <input type="number" class="form-control" placeholder="GPA" id="gpa" 
+                  required="true" step="0.01" min="0.0" max="5.0">
                 </div>
                 <div class="col">
                   <label for="sat">SAT Score (Math+Verbal):</label>
-                  <input type="text" class="form-control" placeholder="SAT Score" id="sat">
+                  <input type="number" class="form-control" placeholder="SAT Score" id="sat"
+                  step="10" min="400" max="1600">
                 </div>
                 <div class="col">
                   <label for="act">ACT Score:</label>
-                  <input type="text" class="form-control" placeholder="ACT Score" id="act">
+                  <input type="number" class="form-control" placeholder="ACT Score" id="act"
+                  step = "1" min="1" max="36">
                 </div>
               </div>
             </div>
@@ -55,8 +58,13 @@
               <button class="btn btn-primary" type="submit" id="chances-submit">How do I fare?</button>
             </div>
           </form>
-          <div id="model-result" class=".d-none">
-            About <strong>50%</strong> of applicants with a similar profile as yours were accepted to New College.
+          <p>
+            Enter your details and see how similar students fared in past New College admissions cycles.
+          </p>
+          <div id="model-result" class="d-none">
+            <p>
+              We would expect <strong id="model-result-pct">xx%</strong> of applicants with a similar profile to be accepted.
+            </p>
           </div>
         </div>
 
