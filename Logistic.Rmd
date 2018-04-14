@@ -1,0 +1,54 @@
+---
+title: Getting Coefficients 
+author: "Adriana Souza, Lydia LaSeur, Roger Filmyer"
+date: "April 14th, 2018"
+output:
+  html_notebook:
+    highlight: tango
+    mathjax: null
+    number_sections: yes
+    theme: spacelab
+    toc: yes
+    toc_float: yes
+---
+
+
+```{r setup, include=FALSE}
+library(dplyr)
+```
+
+# Cleaning
+
+1. Added variable "Accepted" to "Admitted Students" and "Denied Students" -- "1" for admitted students, "0" for denied students.
+2. Merged "Course Selection Rating" with "2017 Course Sel rating" into "Rating" column for "Denied Students" data set.
+2. Merged "Final NCF GPA - 2017", "Final NCF GPA - 2016 and prior", "2017 GPA Calc", and "NCF GPA", into one "GPA"" column. 
+3. Merged "Essay Rating - 2017" and "Essay Rating - 2017" into one "Essay" columns for the "Denied Students" data. 
+
+```{r data}
+#Load data
+data <- read.csv('data.csv')
+
+#Columns
+accepted <- data$Accepted
+course_selection_rigor <- data$Rigor
+gpa <- data$GPA
+sat <- data$SAT
+act <- data$ACT
+essay <- data$Essay
+```
+
+
+```{r regression}
+model_both <- glm(accepted ~ gpa + sat + act, 
+             data = data, 
+             family = binomial)
+
+model_act <- glm(accepted ~ gpa + act, 
+             data = data, 
+             family = binomial)
+
+model_sat <- glm(accepted ~ gpa + sat, 
+             data = data, 
+             family = binomial)
+```
+
