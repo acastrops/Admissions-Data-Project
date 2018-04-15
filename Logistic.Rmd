@@ -1,21 +1,9 @@
 ---
-title: Getting Coefficients 
-author: "Adriana Souza, Lydia LaSeur, Roger Filmyer"
-date: "April 14th, 2018"
-output:
-  html_notebook:
-    highlight: tango
-    mathjax: null
-    number_sections: yes
-    theme: spacelab
-    toc: yes
-    toc_float: yes
+title: "Getting Coefficients"
+author: "Adriana Souza"
+date: "April 14, 2018"
+output: pdf_document
 ---
-
-
-```{r setup, include=FALSE}
-library(dplyr)
-```
 
 # Cleaning
 
