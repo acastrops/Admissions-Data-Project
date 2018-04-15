@@ -13,7 +13,7 @@ Every year, colleges prepare a Factbook -- a reference document providing extens
 
 The data comes in a .pdf with a lot of tables that look something like this:
 
-        [table]
+![](R/factbook.png)
 
 The answer to those questions are in these descriptive statistics that do not necessarily need inference, as much as a way to be represented such that they do not overwhelm. Compare the same information displayed in the graph below:
 
@@ -33,7 +33,7 @@ For the visualizations, we use the aggregate statistics reported in the Factbook
 
 The audience are prospective New College students and New College as well. Our goal is to improve on the current Class Profile of Students page (found here), by including the interactive visualization and making the part below interactive:
 
-      [banner with gpa]
+![](R/gpa_banner.PNG)
 
 Where the default values would be the ones above, but the prospective student would be able to enter their own values and get an idea about the likelihood of getting accepted based on scores alone. There is a concern about how binding this information could be taken to be, so we will be sure to include instructions on how the tool is meant to be used and about the rest of the things considered during their application. 
 
