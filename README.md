@@ -1,17 +1,15 @@
 # Admissions-Data-Project
 Repository for the second project of the Data Visualization class, Spring 2018.
 
-## Group
-
-[Adriana Souza](https://github.com/acastrops), [Roger Filmyer](https://github.com/rfilmyer), [Lydia LaSeur](https://github.com/lydialaseur).
+**Group**: [Adriana Souza](https://github.com/acastrops), [Roger Filmyer](https://github.com/rfilmyer), [Lydia LaSeur](https://github.com/lydialaseur).
 
 
-# Introduction and background 
+# Introduction 
 
 College application time is a daunting period for everyone involved. For students, after 4 years of trying their best to be competitive, choosing the right college means sifting through tons of information that is either not collected in the same place or behind a paywall. For schools, it means making sure that all the information students need is available, up to date, and does not overwhelm.
 
 This is the problem we are trying to solve; we created an interactive visualization that answers the most commonly asked questions by the students that uses data that may not be readily available on a common Admissions’ page.
-Every year, colleges prepare a Factbook -- a reference document providing extensive descriptive data on the school it represents. This document holds the answer to what most students want to know during the time of the application: “What is the average student that gets accepted at this school like?”, “Do I measure up?”, “How many of those students get the type of financial aid I am looking for?”, “Exactly how diverse is the school?”, among others. 
+Every year, colleges prepare a Factbook -- a reference document providing extensive descriptive data on the school it represents. This document holds the answer to what most students want to know during the time of the application: *“What is the average student that gets accepted at this school like?”, “Do I measure up?”, “How many of those students get the type of financial aid I am looking for?”, “Exactly how diverse is the school?”*, among others. 
 
 The data comes in a .pdf with a lot of tables that look something like this:
 
@@ -35,11 +33,11 @@ For the visualizations, we use the aggregate statistics reported in the Factbook
 
 The audience are prospective New College students and New College as well. Our goal is to improve on the current Class Profile of Students page (found here), by including the interactive visualization and making the part below interactive:
 
-[banner with gpa]
+      [banner with gpa]
 
 Where the default values would be the ones above, but the prospective student would be able to enter their own values and get an idea about the likelihood of getting accepted based on scores alone. There is a concern about how binding this information could be taken to be, so we will be sure to include instructions on how the tool is meant to be used and about the rest of the things considered during their application. 
 
-In essence, this presents the data in a clearer, individualized way. These numbers give you a vague sense of whether or not you, as a student, would be accepted but it offers no degree of differentiation from other schools’ website. There is value in interactivity, and [ROGER]. The student gains and so does the school. 
+In essence, this presents the data in a clearer, individualized way. These numbers give you a vague sense of whether or not you, as a student, would be accepted but it offers no degree of differentiation from other schools’ website. There is value in interactivity, and **[ROGER]**. The student gains and so does the school. 
 
 
 ## Features 
