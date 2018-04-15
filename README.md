@@ -11,7 +11,7 @@ College application time is a daunting period for everyone involved. For student
 This is the problem we are trying to solve; we created an interactive visualization that answers the most commonly asked questions by the students that uses data that may not be readily available on a common Admissions’ page.
 Every year, colleges prepare a Factbook -- a reference document providing extensive descriptive data on the school it represents. This document holds the answer to what most students want to know during the time of the application: *“What is the average student that gets accepted at this school like?”, “Do I measure up?”, “How many of those students get the type of financial aid I am looking for?”, “Exactly how diverse is the school?”*, among others. 
 
-The data comes in a .pdf with a lot of tables that look something like this:
+The data for comes in a [.pdf](https://drive.google.com/file/d/0B1qV5QcpSRa2VloydkI4dkpsMzA/view) with several tables that look something like this:
 
 ![](R/factbook.png)
 
