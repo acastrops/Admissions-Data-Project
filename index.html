@@ -16,16 +16,99 @@
     </div>
     <div id="accordion">
       <div class="card">
-        <div class="card-header" id="aoc-header">
-          <h5 class="mb-0">
-            <button class="btn btn-link" data-toggle="collapse" data-target="#aoc-collapse" aria-expanded="true" aria-controls="aoc-collapse">
-              Area of Concentration (Major)
+        <div class="card-header">
+          <div class="row">
+          <div class="col-md">
+                <div class="text-light" style="background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); background-position: 33% 90%;">
+                  <button class="btn btn-link text-light" aria-expanded="false" data-toggle="collapse"
+                  data-target="#scores-collapse" aria-controls="scores-collapse">
+                    <h1>GPA/SAT/ACT</h1>
+                  </button>
+                </div>
+                  <div class="text-light" style="background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); background-position: 33% 90%;">
+                  <button class="btn btn-link text-light" aria-expanded="false" data-toggle="collapse"
+                  data-target="#aoc-collapse" aria-controls="aoc-collapse">
+                    <h1>AOCs/Majors</h1>
+                  </button>
+                </div>
+          </div>
+           <div class="col-md">
+                <div class="text-light" style="background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); background-position: 33% 90%;">
+                  <button class="btn btn-link text-light" aria-expanded="false" data-toggle="collapse"
+                  data-target="#finaid-collapse" aria-controls="finaid-collapse">
+                    <h1>Financial Aid</h1>
+                  </button>
+                </div>
+                  <div class="text-light" style="background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); background-position: 33% 90%;">
+                  <button class="btn btn-link text-light" aria-expanded="false" data-toggle="collapse"
+                  data-target="#demog-collapse" aria-controls="demog-collapse">
+                    <h1>Demographics</h1>
+                  </button>
+                </div>
+          </div>
+        </div>
+        </div>
+
+        <div class="collapse" id="scores-collapse">
+          <div class="card-header modal-header" id="scores-header">
+            <h5 class="mb-0">
+              GPA/SAT/ACT
+            </h5>
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse"
+                  data-target="#scores-collapse" aria-controls="scores-collapse">
+              <span aria-hidden="true">&times;</span>
             </button>
-          </h5>
+          </div>
+          <div class="card-body" id="scores-body">
+            <h1>Numbers don't lie, check the scoreboard.</h1>
+          </div>
         </div>
-        <div class="collapse card-body" id="aoc-collapse">
-            <h1>Economics is the best AOC</h1>
+
+        <div class="collapse" id="aoc-collapse">
+          <div class="card-header modal-header" id="aoc-header">
+            <h5 class="mb-0">
+              Area of Concentration (Major)
+            </h5>
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse"
+                  data-target="#aoc-collapse" aria-controls="aoc-collapse">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body" id="aoc-body">
+            <h1>Economics is the best AOC!</h1>
+          </div>
         </div>
+
+        <div class="collapse" id="finaid-collapse">
+          <div class="card-header modal-header" id="finaid-header">
+            <h5 class="mb-0">
+              Financial Aid
+            </h5>
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse"
+                  data-target="#finaid-collapse" aria-controls="finaid-collapse">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body" id="finaid-body">
+            <h1>You don't have to be rich to be my girl</h1>
+          </div>
+        </div>
+
+        <div class="collapse" id="demog-collapse">
+          <div class="card-header modal-header" id="demog-header">
+            <h5>
+              Demographics
+            </h5>
+            <button type="button" class="close" aria-label="Close" data-toggle="collapse"
+                  data-target="#demog-collapse" aria-controls="demog-collapse">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="card-body" id="demog-body">
+            <h1>Venezuelan and Indian, 'Rican and Dominican, Japanese or Portuguese, Quarter of Brazilian, White and Korean, Black and Pinay</h1>
+          </div>
+        </div>
+
         <div class="card-header">
           <h5 class="mb-0">
               <button class="btn btn-link" data-toggle="collapse" data-target="#chances-collapse" aria-expanded="true" aria-controls="chances-collapse">
@@ -33,6 +116,7 @@
             </button>
           </h5>
         </div>
+
         <div class="collapse show card-body" id="chances-collapse">
           <form id="chances">
             <div class="form-group">
