@@ -13,7 +13,7 @@ Every year, colleges prepare a Factbook -- a reference document providing extens
 
 The data for comes in a [.pdf](https://drive.google.com/file/d/0B1qV5QcpSRa2VloydkI4dkpsMzA/view) with several tables that look something like this:
 
-![](R/factbook.png)
+![](R/factbook.png =400x400)
 
 The answer to those questions are in these descriptive statistics that do not necessarily need inference, as much as a way to be represented such that they do not overwhelm. Compare the same information displayed in the graph below:
 
