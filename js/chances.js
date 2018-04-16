@@ -24,9 +24,9 @@ window.onload = function(){
 }
 
 const model = {
-	satOnly: [-17.668, 0.612, 0.014],
-	actOnly: [-17.472, 1.944, 0.428],
-	both:    [-24.629, 2.690, 0.009, 0.196]
+	satOnly: [-24.704, 2.743, 0.013],
+	actOnly: [-22.865, 3.295, 0.446],
+	both:    [-25.806, 2.967, 0.009, 0.196]
 }
 
 const predict = function(gpa, sat, act){
