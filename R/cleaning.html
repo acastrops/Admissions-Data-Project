@@ -125,7 +125,7 @@ $(document).ready(function () {
 
 <p>Read in raw data for admitted students and select only the columns we need.</p>
 <pre class="r"><code># both admitted.csv and denied.csv are the raw data from Google sheets exported as a csv
-admit_raw &lt;- fread(&quot;admitted.csv&quot;, sep = &quot;,&quot;)
+admit_raw &lt;- fread(&quot;./PrivateData/admitted.csv&quot;, sep = &quot;,&quot;)
 str(admit_raw)</code></pre>
 <pre><code>## Classes 'data.table' and 'data.frame':   3893 obs. of  13 variables:
 ##  $ Ref                                 : int  892086262 214816086 712893018 59273611 532244154 673547000 486728235 655868701 400244699 379902473 ...
@@ -148,7 +148,7 @@ str(admit_raw)</code></pre>
 
 colnames(admit) &lt;- c(&quot;Ref&quot;, &quot;Round&quot;, &quot;Rigor&quot;,&quot;GPA&quot;,&quot;ACT&quot;,&quot;SAT_I&quot;, &quot;SAT_R&quot;,&quot;Accepted&quot;)</code></pre>
 <p>Do the same for the raw data for the denied students.</p>
-<pre class="r"><code>denied_raw &lt;- fread(&quot;denied.csv&quot;, sep = &quot;,&quot;)
+<pre class="r"><code>denied_raw &lt;- fread(&quot;./PrivateData/denied.csv&quot;, sep = &quot;,&quot;)
 str(denied_raw)</code></pre>
 <pre><code>## Classes 'data.table' and 'data.frame':   2103 obs. of  18 variables:
 ##  $ Ref                                 : int  60901 67139 291858 1354086 1776196 1975036 5738442 6541461 7535218 7829533 ...
@@ -189,7 +189,7 @@ applied &lt;- applied_raw</code></pre>
 <p>Remove any gpa over 5.0 or equal to zero.</p>
 <pre class="r"><code>applied[applied$GPA &gt; 5 | applied$GPA == 0,&quot;GPA&quot;] &lt;- NA</code></pre>
 <p>Convert the old SAT scores (SAT_I) to the new scores (SAT_R) using the conversion chart.</p>
-<pre class="r"><code>SAT_conversions &lt;- fread(&quot;old_to_new_SAT.csv&quot;, sep = &quot;,&quot;)
+<pre class="r"><code>SAT_conversions &lt;- fread(&quot;../data/old_to_new_SAT.csv&quot;, sep = &quot;,&quot;)
 
 converted_SAT_I &lt;- left_join(applied[, c(&quot;Ref&quot;,&quot;SAT_I&quot;,&quot;SAT_R&quot;)],SAT_conversions, by = &quot;SAT_I&quot;)[,&quot;SAT_R.y&quot;]
 applied &lt;- cbind(applied, converted_SAT_I)</code></pre>
@@ -200,7 +200,7 @@ applied &lt;- cbind(applied, SAT = SAT_final)
 applied[applied == -1] &lt;- NA</code></pre>
 <p>Remove all other SAT columns except for SAT_final, and write to CSV file for later analysis.</p>
 <pre class="r"><code>applied_clean &lt;- applied[,c(1:5,10,8)]
-fwrite(applied_clean, &quot;applied_clean.csv&quot;)</code></pre>
+fwrite(applied_clean, &quot;../data/applied_clean.csv&quot;)</code></pre>
 <p>Build logistic regression models for predicting acceptance based on combinations of GPA, ACT, and SAT scores.</p>
 <pre class="r"><code>data &lt;- applied_clean
 #Columns
@@ -229,7 +229,9 @@ coefficients(model_sat)</code></pre>
 <pre><code>##  (Intercept)          gpa          sat 
 ## -26.42145687   2.72198032   0.01385087</code></pre>
 <p>Create bins for GPA and get counts for each bin.</p>
-<pre class="r"><code>GPA_bin_labels = c(&quot;0 - 0.5&quot;,
+<pre class="r"><code>admit_clean &lt;- applied_clean %&gt;%
+  filter(Accepted == 1)
+GPA_bin_labels = c(&quot;0 - 0.5&quot;,
                    &quot;0.51 - 1.0&quot;,
                    &quot;1.01 - 1.5&quot;,
                    &quot;1.51 - 2.0&quot;,
@@ -240,13 +242,13 @@ coefficients(model_sat)</code></pre>
                    &quot;4.01 - 4.5&quot;,
                    &quot;4.51 - 5.0&quot;)
 
-GPA_binned &lt;- cut(applied_clean$GPA, breaks = seq(0,5,by = 0.5), labels = GPA_bin_labels, right = FALSE, include.lowest = TRUE)
+GPA_binned &lt;- cut(admit_clean$GPA, breaks = seq(0,5,by = 0.5), labels = GPA_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_GPA_bins &lt;- summary(GPA_binned)
 counts_for_GPA_bins</code></pre>
 <pre><code>##    0 - 0.5 0.51 - 1.0 1.01 - 1.5 1.51 - 2.0 2.01 - 2.5 2.51 - 3.0 
-##          0          0         16         38        183        483 
+##          0          0          0          0          0         15 
 ## 3.01 - 3.5 3.51 - 4.0 4.01 - 4.5 4.51 - 5.0       NA's 
-##       1054       1646       1876        587        113</code></pre>
+##        402       1147       1734        541         54</code></pre>
 <p>Create bins for SAT and get counts for each bin.</p>
 <pre class="r"><code>SAT_bin_labels = c(&quot;400 - 500&quot;,
                    &quot;510 - 600&quot;,
@@ -261,15 +263,15 @@ counts_for_GPA_bins</code></pre>
                    &quot;1410 - 1500&quot;,
                    &quot;1510 - 1600&quot;)
 
-SAT_binned &lt;- cut(applied_clean$SAT, breaks = seq(400,1600,by = 100), labels = SAT_bin_labels, right = FALSE, include.lowest = TRUE)
+SAT_binned &lt;- cut(admit_clean$SAT, breaks = seq(400,1600,by = 100), labels = SAT_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_SAT_bins &lt;- summary(SAT_binned)
 counts_for_SAT_bins</code></pre>
 <pre><code>##   400 - 500   510 - 600   610 - 700   710 - 800   810 - 900  910 - 1000 
-##           0           4           3          26         110         234 
+##           0           0           0           0           0           1 
 ## 1010 - 1100 1110 - 1200 1210 - 1300 1310 - 1400 1410 - 1500 1510 - 1600 
-##         412         787         914        1013         685         266 
+##          40         315         675         910         658         261 
 ##        NA's 
-##        1542</code></pre>
+##        1033</code></pre>
 <p>Create bins for ACT and get counts for each bin.</p>
 <pre class="r"><code>ACT_bin_labels = c(&quot;0 - 3&quot;,
                    &quot;4 - 6&quot;,
@@ -284,13 +286,13 @@ counts_for_SAT_bins</code></pre>
                    &quot;31 - 33&quot;,
                    &quot;33 - 36&quot;)
 
-ACT_binned &lt;- cut(applied_clean$ACT, breaks = seq(0,36,by = 3), labels = ACT_bin_labels, right = FALSE, include.lowest = TRUE)
+ACT_binned &lt;- cut(admit_clean$ACT, breaks = seq(0,36,by = 3), labels = ACT_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_ACT_bins &lt;- summary(ACT_binned)
 counts_for_ACT_bins</code></pre>
 <pre><code>##   0 - 3   4 - 6   7 - 9 10 - 12 13 - 15 16 - 18 19 - 21 22 - 24 25 - 27 
-##       0       0       0       0      17      97     216     416     619 
+##       0       0       0       0       0       1      15     126     414 
 ## 28 - 30 31 - 33 33 - 36    NA's 
-##     817     700     326    2788</code></pre>
+##     708     657     320    1652</code></pre>
 
 
 

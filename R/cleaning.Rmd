@@ -17,7 +17,7 @@ Read in raw data for admitted students and select only the columns we need.
 
 ```{r}
 # both admitted.csv and denied.csv are the raw data from Google sheets exported as a csv
-admit_raw <- fread("admitted.csv", sep = ",")
+admit_raw <- fread("./PrivateData/admitted.csv", sep = ",")
 str(admit_raw)
 
 
@@ -32,7 +32,7 @@ colnames(admit) <- c("Ref", "Round", "Rigor","GPA","ACT","SAT_I", "SAT_R","Accep
 Do the same for the raw data for the denied students.  
 
 ```{r}
-denied_raw <- fread("denied.csv", sep = ",")
+denied_raw <- fread("./PrivateData/denied.csv", sep = ",")
 str(denied_raw)
 
 # there are multiple cols for GPA, merging them to 1 column
@@ -132,6 +132,8 @@ coefficients(model_sat)
 Create bins for GPA and get counts for each bin.  
 
 ```{r}
+admit_clean <- applied_clean %>%
+  filter(Accepted == 1)
 GPA_bin_labels = c("0 - 0.5",
                    "0.51 - 1.0",
                    "1.01 - 1.5",
@@ -143,7 +145,7 @@ GPA_bin_labels = c("0 - 0.5",
                    "4.01 - 4.5",
                    "4.51 - 5.0")
 
-GPA_binned <- cut(applied_clean$GPA, breaks = seq(0,5,by = 0.5), labels = GPA_bin_labels, right = FALSE, include.lowest = TRUE)
+GPA_binned <- cut(admit_clean$GPA, breaks = seq(0,5,by = 0.5), labels = GPA_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_GPA_bins <- summary(GPA_binned)
 counts_for_GPA_bins
 ```
@@ -165,7 +167,7 @@ SAT_bin_labels = c("400 - 500",
                    "1410 - 1500",
                    "1510 - 1600")
 
-SAT_binned <- cut(applied_clean$SAT, breaks = seq(400,1600,by = 100), labels = SAT_bin_labels, right = FALSE, include.lowest = TRUE)
+SAT_binned <- cut(admit_clean$SAT, breaks = seq(400,1600,by = 100), labels = SAT_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_SAT_bins <- summary(SAT_binned)
 counts_for_SAT_bins
 ```
@@ -187,7 +189,7 @@ ACT_bin_labels = c("0 - 3",
                    "31 - 33",
                    "33 - 36")
 
-ACT_binned <- cut(applied_clean$ACT, breaks = seq(0,36,by = 3), labels = ACT_bin_labels, right = FALSE, include.lowest = TRUE)
+ACT_binned <- cut(admit_clean$ACT, breaks = seq(0,36,by = 3), labels = ACT_bin_labels, right = FALSE, include.lowest = TRUE)
 counts_for_ACT_bins <- summary(ACT_binned)
 counts_for_ACT_bins
 ```
