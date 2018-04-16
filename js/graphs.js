@@ -121,3 +121,5 @@ function wrap(text, width) {
 }
 
 createBarGraph("#graph-race", "data/race.csv", "race", "total");
+
+createBarGraph("#graph-residence", "data/residence.csv", "residence", "total");
