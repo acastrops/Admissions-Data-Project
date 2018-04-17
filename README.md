@@ -19,8 +19,6 @@ The answer to those questions are in these descriptive statistics that do not ne
 
 				[INSERT VISUALIZATION HERE]
 				
-
-
 # Data and outcomes
 
 ## Structure of the data 

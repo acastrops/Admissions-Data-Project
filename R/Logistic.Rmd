@@ -14,15 +14,19 @@ output: pdf_document
 
 ```{r data}
 #Load data
-data <- read.csv('data.csv')
+data <- read.csv('../data/applied_clean.csv')
 
 #Columns
 accepted <- data$Accepted
 course_selection_rigor <- data$Rigor
 gpa <- data$GPA
+gpa2 <- gpa
+gpa2[gpa2 > 5] <- NA
+gpa <- gpa2
 sat <- data$SAT
 act <- data$ACT
 essay <- data$Essay
+
 ```
 
 
@@ -30,13 +34,16 @@ essay <- data$Essay
 model_both <- glm(accepted ~ gpa + sat + act, 
              data = data, 
              family = binomial)
+coef(model_both)
 
 model_act <- glm(accepted ~ gpa + act, 
              data = data, 
              family = binomial)
+coef(model_act)
 
 model_sat <- glm(accepted ~ gpa + sat, 
              data = data, 
              family = binomial)
+coef(model_sat)
 ```
 
