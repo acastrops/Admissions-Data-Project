@@ -1,6 +1,6 @@
 "use strict";
 
-function createBarGraph(divSelector, dataURL, xColumnName, yColumnName){
+function createBarGraph(divSelector, dataURL, xColumnName, yColumnName, na_flag = false){
 
   var div = d3.select(divSelector)
 
@@ -8,9 +8,9 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName){
   const divHeight = 400;
   //const divWidth = parseInt(div.style("width"), 10) || 400
   const divWidth = 400;
-  
+
   console.log(div.style("height"));
-  
+
   console.log(divWidth, divHeight);
 
   var margin = {top: 20, right: 20, bottom: 40, left: 40},
@@ -23,7 +23,7 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName){
             .padding(0.1);
   var y = d3.scaleLinear()
             .range([height, 0]);
-            
+
   // append the svg object to the body of the page
   // append a 'group' element to 'svg'
   // moves the 'group' element to the top left margin
@@ -32,22 +32,28 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName){
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
-      .attr("transform", 
+      .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
 
   // get the data
   d3.csv(dataURL, function(error, data) {
     if (error) throw error;
 
+    console.log(data);
     // format the data
     data.forEach(function(d) {
       d[yColumnName] = +d[yColumnName];
     });
 
+    if (na_flag == true) {
+      var total_not_provided = data.pop();
+    }
+
     // Scale the range of the data in the domains
+    // x.domain(data.map(function(d) { if (d[yColumnName] > 0) return d[xColumnName]; }));
     x.domain(data.map(function(d) { return d[xColumnName]; }));
     y.domain([0, d3.max(data, function(d) { return d[yColumnName]; })]);
-    
+
     // append the rectangles for the bar chart
     svg.selectAll(".bar")
         .data(data)
@@ -61,8 +67,12 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName){
     // add the x Axis
     const xAxis = svg.append("g")
         .attr("transform", "translate(0," + height + ")")
+        .attr("class", "xaxis axis")
         .call(d3.axisBottom(x));
 
+    // svg.selectAll(".xaxis text")  // select all the text elements for the xaxis
+    //      .attr("transform", "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height + ")rotate(-45)";
+    //      });
     // add the y Axis
     svg.append("g")
         .call(d3.axisLeft(y));
@@ -120,6 +130,12 @@ function wrap(text, width) {
   })
 }
 
-createBarGraph("#graph-race", "data/race.csv", "race", "total");
+// createBarGraph("#graph-race", "data/race.csv", "race", "total");
 
-createBarGraph("#graph-residence", "data/residence.csv", "residence", "total");
+// createBarGraph("#graph-residence", "data/residence.csv", "residence", "total");
+
+createBarGraph("#graph-GPA", "data/GPA_reduced.csv", "GPA", "total");
+
+createBarGraph("#graph-ACT", "data/ACT_scores_reduced.csv", "score", "total", true);
+
+createBarGraph("#graph-SAT", "data/SAT_scores_reduced.csv", "score", "total", true);
