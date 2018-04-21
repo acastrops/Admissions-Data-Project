@@ -103,23 +103,124 @@ Our visualization collapses and expands according to what information the user w
 
 # Design process 
 
+## Pros and cons
+
+The NCF Factbook provides data pertaining to the high school performance and demographics of enrolled students, academics and faculty at NCF, cost of attendance, and financial aid. All of this is presented using tables. These tables are useful for pulling exact values but they are tedious to read and don’t communicate the overall distributions in a quick and easy manner. Since our overall goal is to provide prospective freshman with a quick and easily understood summary of statistics we will translate these tables into graphs that communicate the overall distributions of these variables in just a glance. 
+
+Our data consists of three different types: numerical, categorical, and geographic. For each data type we will consistently use a specific type of graph. We chose to keep our visualizations simple and clean to ensure that they are readable by a broad audience.
+
+\begin{enumerate}
+\item \textbf{Numerical - Histograms/Bar Charts}
+\par Variables that fit this type include GPA, ACT and SAT scores, high school class rankings, and class sizes. For each of these variables the values are binned and each bin is assigned either a count or a percentage. 
+The factbook has tables for GPA, ACT/SAT scores but we could not use them for reasons that will be discussed in the next section. As a result we used the internal dataset provided by Admissions to create aggregate counts for binned values to use in histograms. \vspace{2mm}
+
+\par \textbf{Pros:}
+  \begin{itemize}
+  \item The ordering of the bins will be preserved.
+  \item Only aggregate statistics are needed, allowing us to use certain variables from the internal dataset without but still maintain anonymity.
+  \item The format is very familiar and easy to read for a broad audience. 
+Simple enough for us to automate our D3 code to work for several different variables.
+  \end{itemize}
+  \vspace{2mm}
+
+\par \textbf{Cons:}
+  \begin{itemize}
+  \item While they’re effective, they’re not very exciting or interactive for the user.
+  \item Variables with very sharp distributions where the majority of the population lies within a few bins don’t translate well.
+  \end{itemize}
+  \vspace{2mm}
+
+\item \textbf{Categorical - Donut/Pie Charts} 
+\par Most of the Factbook data is categorical, including demographics for both students and faculty as well the academic offerings at NCF. \vspace{2mm}
+\par \textbf{Pros:}
+  \begin{itemize}
+  \item There is no ordinality to this data so we decided to not use histograms to avoid any implication of hierarchy from the ordering of the categories along the axis.
+  \item They fulfill our goal of providing a quick, overall view of the distribution. 
+  \item Just like histrograms, they are very familiar and any user should already know how to interpret it.
+  \item Simple enough to automate our D3 code which is very important since a majority of our variable are categorical.
+  \end{itemize}
+  \vspace{2mm}
+
+\par \textbf{Cons:}
+  \begin{itemize}
+  \item It’s hard to accurately judge the differences in area between each segment or slice.
+  \item User can’t read any exact values from it unless a legend or individual labels are provided, which can get messy for variables with a lot of possible categories or categories with long names.  
+  \end{itemize}
+  
+\item \textbf{Geographic - Choropleth Maps}
+\par We have two geographic variables: Florida county of residence for in-state students and US region of residence (e.g. New England, Midwest, South excluding Florida, etc). For these we will use choropleth map to illustrate the distribution of students across these locations. \vspace{2mm}
+\par \textbf{Pros:}
+  \begin{itemize}
+  \item Obviously a map is the easiest way to communicate any geographic data.
+  \item Most may not know choropleths by name but they’re still familiar and easy to read for the general public.
+  \item For our purposes, there are pre-existing appropriately drawn maps so the implementation is not difficult.
+  \end{itemize}
+  \vspace{2mm}
+
+\par \textbf{Cons:}
+  \begin{itemize}
+  \item The individual regions in county map of Florida will be too small to insert any names or values and some interactivity will be required to provide that information in a clean visualization.
+  \end{itemize}
+\end{enumerate}
+\vspace{2mm}
+
+Below is an outline of the current architecture of the visualization. Each numbered group will have its own dedicated section to hold the individual graphs of its variables. For each variable, the type of data, and possible values/categories. 
+
+1. GPA and Test Scores
+    + GPA - Numerical - Histogram  
+    Possible Values: Half point bins on a 5 point scale.  
+    + HS Class Rankings - Numerical - Histogram  
+    Possible Values: Top 10th, 25th, 50th percentile or bottom 50th or 25th percentile.  
+    + SAT Scores - Numerical - Histogram  
+    Possible Values: 1000 point bins on a 1600 point scale.  
+    + ACT Scores - Numerical - Histogram  
+    Possible Values: 3 point bins on a 36 point scale.  
+2. Student Demographics
+    + Gender - Categorical - Donut Chart  
+    Possible Categories: Male or Female  
+    + Race/Ethnicity - Categorical - Donut Chart  
+    Possible Categories: White, Black, Hispanic, Asian, Multiracial  
+    + Residency by US Region for all students - Geographic - Choropleth  
+    Possible Locations: New England, Midwest, Middle States, West, South (minus FL), Southwest, Florida  
+    + Residency by County for in state students - Geographic - Choropleth  
+    Possible Locations: All counties in FL	
+    + Secondary School Type - Categorical - Donut Chart  
+    Possible Categories: Public, Charter, Private, Parochial, Home, GED, International  
+    + Specialized HS Curriculum - Categorical - Donut Chart  
+    Possible Categories: Honors, AP, IB  
+3. Academics
+    + Distribution of AOC’s by Academic Division (Graduates) - Categorical  - Donut Chart  
+    Possible Categories:- Social Sciences, Humanities, Natural Sciences, Interdisciplinary Studies, Environmental Studies, General Studies  
+    + Distribution among Top 6 AOC’s (Enrolled Students) - Categorical  - Donut Chart  
+    Possible Categories: Biology, Chemistry, Psychology, Political Science, Economics, Humanities  
+    + Class Sizes and Student to Faculty Ratio - Numerical - Histogram  
+    Possible Values: 2-9, 10-19, 20-29, 30-39, 40-49, 50-99, or 100+ students enrolled  
+    Student to faculty ratio will be included with the histogram for class sizes since the two are closely related and it seems unnecessary to provide a separate visualization for a single ratio.  
+    +  Faculty Demographics - Categorical - Donut Chart  
+    Possible Categories: Gender and Ethnicity are provided by the factbook, using the same possible categories to describe students.  
+4. Financial Aid and Cost of Attendance  
+We are still waiting to see if we will get the financial aid data so we can’t give exact details. If possible, we would like to provide statistics on the types of aid provided and the number or proportion of students that received each type. We also plan to show the estimated cost of attendance using either a bar chart or donut chart.  
+	  
 ## Implementation challenges
 
 \begin{enumerate}
 \item \textbf{Display: none}
-
 \par We had several aesthetic issues with d3 graphs. Since our whole visualization depends on being collapsable, a lot of the elements were being rendered while invisible to the user. This resulted in text not wrapping correctly and made it difficult to create graphs with sizes that would adjust automatically to the page. Our solution was to make our graphs non-resizable and by adding some esoteric javascript event handling magic from the sacred texts (Stack Overflow)  to check for changes in the webpage and dynamically change the width and height of the graphs. \vspace{2mm}
 
 \item  \textbf{How to get all SATs under the same scoring band after the changes in 2016?}
-\item \textbf{Why are my coefficients wrong?}
+\par Changes were made to the SAT in March 2016 (details of which will be discussed later) and the factbook data uses the old scoring metrics. Any user using this product will have taken the newer version and they can’t accurately compare themselves to NCF students if we provide data for the older version. Plus, the internal dataset used to build our model included students that had taken both the pre March 2016 version, the post March 2016 versions and some applicants had both. To make sure our data was both relevant and consistent we used a conversion chart provided by College Board to convert all of the old SAT scores to their equivalent new score. \vspace{2mm}
 
+\item \textbf{How to reconcile the inconsistent GPA scales between the Factbook data and internal data?}
+\par The Factbook has GPA’s on a 4 point scale but NCF uses a weighted GPA on a 5 point scale when evaluating an applicant and consequently our regression model does the same. We want to maintain consistency throughout our product and felt that mixing the two different GPA scales would be confusing for the user. NCF provides instruction on how they weight high-school GPA’s so any prospective student could recalculate their own if needed. Using the internal dataset we generate our own binned counts so our graphs would show GPA’s on the same scale used in our model. \vspace{2mm}
+
+\item \textbf{Why are my coefficients wrong?}
 \par When we first ran the regression, our coefficient for GPA seemed to give it a lot less weight than the guidelines for acceptance decision dictated (in theory). Upon further inspection, we realized IB students, who do not have a regular GPA, were being flagged internally as having a 9.8 GPA. This completely threw off our logistic model. When we set those to NAs, the essentially coefficient doubled and our results were significantly more in line with what the data showed.
 
 \item \textbf{How to automate D3?}
 \par Our plan includes around 10 to 12 D3 graphs. Most d3 examples only deal with a single, isolated graph. We had to look into a way of being able to create these graphs programmatically. How do we productize graphing? How do we avoid DRY issues? We wrote a function that handles all of that beautifully if you just pass it a .csv file with the data you want to display in your bar chart. \vspace{2mm}
 
 \item \textbf{How to word the results of our model in an informative way but that is also clearly non-binding?}
-\par We \vspace{2mm}
+\par We did not want to report the prediction from our model in a way that would imply that the prediction was guaranteed or that we were providing the true probability of acceptance. We chose to phrase the results as the percentage of admitted students that had similar or worse scores than the input. \vspace{2mm}
 
 \item \textbf{Why make the graphs scale well with the webpage's responsive design (also be mobile friendly, etc)?}
 \par We envision a large number of our prospective students and parents using our product on their smartphones. How can we deliver a mobile-friendly experience? This was one of our main challenges that was taken into consideration as we moved onto the final stages of the .CSS styling process.
