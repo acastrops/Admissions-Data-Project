@@ -15,6 +15,13 @@ header-includes:
 - \usepackage{graphicx}
 ---
 
+\vspace{2cm}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{img/early_stages1}
+\caption{Current barebones of the visualization}
+\end{figure}
+
 \newpage
 
 # Introduction and background 
