@@ -2,33 +2,146 @@
 title: "Design Document"
 author: "Adriana Souza, Roger Filmyer, Lydia LaSeur"
 date: "April 14, 2018"
-output: pdf_document
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 3
+header-includes:
+- \usepackage{amsmath}
+- \usepackage{color}
+- \usepackage{changepage}
+- \usepackage{booktabs}
+- \usepackage{hyperref}
+- \usepackage{graphicx}
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+\newpage
 
-Your group will create a document (no page limit, approx. 1000-2000 words) summarizing the design process over the course of the project. Parts of the document will be written (text), but you will also need to include images and/or links demonstrating proposed design aspects.
+# Introduction and background 
 
-Your paper should be well-written, and sources should be consistently cited. 
+\vspace{1cm}
 
-You will turn in a rough draft of the document during week 11. After that, you will get feedback from the instructor; you are welcome to resubmit a final draft of the document later in the semester (after your presentations). The rough draft is due prior to then in order to make sure you are considering design issues during the project creation (instead of getting too focused on technical issues). 
+College application time is a daunting period for everyone involved. For students, after 4 years of trying their best to be competitive, choosing the right college means sifting through tons of information that is either not collected in the same place or behind a paywall. For schools, it means making sure that all the information students need is available, up to date, and does not overwhelm.
 
-The structure of your paper should be as follows:
+This is the problem we are trying to solve; we created an interactive visualization that answers the most commonly asked questions by the students that uses data that may not be readily available on a common Admissions' page.
 
-1. **Introduction and background:** what problem are you trying to solve or question are you trying to answer? What relevant resources already exist? Why is visualization an appropriate way to address this question (rather than statistical modeling, etc.)?
+Every year, colleges prepare a Factbook -- a reference document providing extensive descriptive data on the school it represents. This document holds the answer to what most students want to know during the time of the application: "What is the average student that gets accepted at this school like?", "Do I measure up?", "How many of those students get the type of financial aid I am looking for?", "Exactly how diverse is the school?", among others. 
 
-2. **Data and outcomes:** What is the structure of your data? Who is your intended audience/ users of the visualization? What tasks or features are the audience likely to need? Discuss this both generally and in terms of your data.
+The data comes in a .pdf with a lot of tables that look something like this:
 
-3. **Design process:** This is the longest section of the paper.
 
-+ Give an overview of the different options (pros and cons) for displaying each type of information visually, and discuss why you chose the option you did. This should be repeated for each major element or grouping of your visualization product.
-+ You should also discuss any challenges you ran into when implementing your design. For example, if you hoped to include a feature mentioned in your project proposal or peer review but weren’t able to get it to work, you should discuss what obstacles you encountered and what troubleshooting you attempted.
-+ Discuss any feedback you received during the peer review process. If you are still in the process of including a feature, be honest about that. If you decided not to address some feedback from the peer review process, explain why.
-+ Comment on if or how your goals and intended audience changed during the design process. 
-+ This section should be a mixture of text and images of your designs. Please include screen shots or links as appropriate.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{img/race_table.png}
+\caption{New College Factbook 2016-2017: Table B2}
+\end{figure}
 
-4. **Conclusion:** Summarize the goals and functionality of your final visualization product. What can your intended audience learn from your product? What did you learn? Describe any limitations of your current work and any future work you would like to include.
+The answer to those questions are in these descriptive statistics that do not necessarily need inference, as much as a way to be represented such that they do not overwhelm. Compare the same information displayed in the graph below:
 
-5. **Division of work:** A short summary of how the different tasks were split up among group members
+\newpage
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\textwidth]{img/race_donut.jpg}
+\caption{Visualization: Demographics Tab}
+\end{figure}
+
+Note: the colors are from a random palette, we will adjust to the website colors when embedding. The donut is also fully interactive. Given our audience and for simplicity, we excluded all races for which there were no students and also the "Unknown category."
+
+\vspace{1cm}
+
+# Data and outcomes
+
+## Structure of the data 
+
+There are two sources of data for two separate parts of the project. The two parts are (1) interactive visualizations with data on the average accepted student's GPA, SAT, ACT, choice of major, financial aid received, and demographics; (2) an interactive tool where the prospective student can enter their GPA, SAT, or ACT and a reduced logistic model (written with stock javascript) will give them an idea how what their chances would be based on the same statistics for students who were accepted. 
+
+For the visualizations, we use the aggregate statistics reported in the Factbook, which is publicly available. For the second part, we used internal student data  to calculate the coefficients (locally) that we passed to our model. This data is sensitive and contains student name, GPA, essay, and test scores. 
+
+
+\newpage
+
+
+## Audience 
+
+The audience are prospective New College students and New College as well. Our goal is to improve on the current Class Profile of Students page (found here), by including the interactive visualization and making the part below interactive:
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{img/gpa_banner.png}
+\caption{New College Class Profile Page}
+\end{figure}
+
+\vspace{5mm}
+Right now, it looks like this:
+\vspace{5mm}
+
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\textwidth]{img/score_banner.png}
+\caption{Visualization: "See my chances" section}
+\end{figure}
+
+After styling, it should look similar to the first picture, only interactive. The default values would be the ones reported, but the prospective student would be able to enter their own values and get an idea about the likelihood of getting accepted based on scores alone. There is a concern about how binding this information could be taken to be, so we will be sure to include instructions on how the tool is meant to be used and about the rest of the things considered during their application. 
+
+In essence, this presents the data in a clearer, individualized way. These numbers give you a vague sense of whether or not you, as a student, would be accepted but it offers no degree of differentiation from other schools' website. There is value in interactivity. The prospective student has a better experience when they are able see their number, rather than an impersonal range. The student gains and so does the school. 
+
+
+## Features
+
+Our visualization collapses and expands according to what information the user wants at the time. In the end, the user is able to print their page (to a .pdf or actual prints) and keep only the data they are most interested in. 
+
+
+# Design process 
+
+## Implementation challenges
+
+\begin{enumerate}
+\item \textbf{Display: none}
+
+\par We had several aesthetic issues with d3 graphs. Since our whole visualization depends on being collapsable, a lot of the elements were being rendered while invisible to the user. This resulted in text not wrapping correctly and made it difficult to create graphs with sizes that would adjust automatically to the page. Our solution was to make our graphs non-resizable and by adding some esoteric javascript event handling magic from the sacred texts (Stack Overflow)  to check for changes in the webpage and dynamically change the width and height of the graphs. \vspace{2mm}
+
+\item  \textbf{How to get all SATs under the same scoring band after the changes in 2016?}
+\item \textbf{Why are my coefficients wrong?}
+
+\par When we first ran the regression, our coefficient for GPA seemed to give it a lot less weight than the guidelines for acceptance decision dictated (in theory). Upon further inspection, we realized IB students, who do not have a regular GPA, were being flagged internally as having a 9.8 GPA. This completely threw off our logistic model. When we set those to NAs, the essentially coefficient doubled and our results were significantly more in line with what the data showed.
+
+\item \textbf{How to automate D3?}
+\par Our plan includes around 10 to 12 D3 graphs. Most d3 examples only deal with a single, isolated graph. We had to look into a way of being able to create these graphs programmatically. How do we productize graphing? How do we avoid DRY issues? We wrote a function that handles all of that beautifully if you just pass it a .csv file with the data you want to display in your bar chart. \vspace{2mm}
+
+\item \textbf{How to word the results of our model in an informative way but that is also clearly non-binding?}
+\par We \vspace{2mm}
+
+\item \textbf{Why make the graphs scale well with the webpage's responsive design (also be mobile friendly, etc)?}
+\par We envision a large number of our prospective students and parents using our product on their smartphones. How can we deliver a mobile-friendly experience? This was one of our main challenges that was taken into consideration as we moved onto the final stages of the .CSS styling process.
+\end{enumerate}
+
+\newpage
+
+## Incorporating feedback
+
+After our presentation, the class expressed that if they were to use such a visualization, there were 3 other things they would like to see incorporated that we did not mention: (1) number of students who are the first generation in college; (2) to include more specific financial aid information such as number of Pell grants, Stafford loans, Bright Futures, and Fullbrights; and (3), number of students placed in graduate programs.
+
+We have reached out to the financial aid department regarding the number of students admitted last year who were the first generation in their family to be in college. We are still currently waiting for that. For point (2), we scraped and included information about all of the types of financial aid except Fullbrights;  we were not able to find a good source for this number. Lastly, for point (3), this information is very hard to track down for many reasons. The school does have a survey that is administered at graduation (regarding future plans of enrollment in graduate school) as well as one that is sent out a year after (to check up on that information), but the response rates are low. That, coupled with the fact that most students move out of state or take a gap year, makes it even harder to be able to narrow down that information.
+
+## Evolution of the design process
+
+Both our goals and audience changed as we refined the design process. Initially, we had intended to design a model for the admissions department and make some visualization of how the different components of an application affect the acceptance decision. As we studied New College's decision method, this changed: we started thinking about how  each school is different when it comes to what they consider important. What kind of information do students need when applying? Do they know what it is? If so, where do they get it? 
+
+The answer to those questions usually lies behind a paywall. There is an entire industry focused around this exact problem. We could not find any free alternatives that do this, so we decided to create our own tool for prospective New College students.
+
+
+# Conclusion
+
+
+## Goals, functionality, limitations
+
+Our visualization condenses key pieces of information about New College for prospective students and parents. The user will be able to have the information they need in one place, without having to go through tables and tables of irrelevant information contained in the factbook. The major goal is to inform, in a way that does not overwhelm. This is especially important since most students are not aware of the existence of Factbooks. These are freely distributed by colleges, with almost the exact same information submitted to places like Barron's and Princeton Review, etc -- whose services the students often pay for. 
+
+Before the final submission, we expect to have the styling completely done. As of now, we have only taken care of the the barebones and base functionality. The design aspect is currently in the works. In the future, the tool would benefit from having a more complex model where we would be able to incorporate course rigor based on what school the student selects, for example.
+
+### Division of work: 
+
+Roger handled all of the front end aspect of the project. He also wrote the logistic regression using stock js and the function we used to create bar charts. Lydia collected and cleaned the data, she also corrected the SAT scores so that they would be on the same scoring band. She also created some of the graphs on the page.  Adriana was the project manager and pitched in a little bit everywhere.
