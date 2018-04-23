@@ -1,10 +1,8 @@
-﻿race,total
-nonresident alien,17
-hispanic,154
-black,24
-white,593
-american indian,0
-asian,27
-pacific islander,0
-multiracial,31
-unknown,15
+race	total
+Non Resident Alien	17
+Hispanic/Latino	154
+Black/African American	24
+White	593
+Asian	27
+Multiracial	31
+Unknown	15
