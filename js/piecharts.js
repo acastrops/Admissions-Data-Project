@@ -1,5 +1,5 @@
 <script>
-var race_donut = new d3pie("pieChart", {
+var race_donut = new d3pie("race-donut", {
 	"header": {
 		"title": {
 			"text": "Race/Ethnicity",
