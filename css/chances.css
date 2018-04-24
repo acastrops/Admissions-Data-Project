@@ -1,0 +1,65 @@
+.stat-carousel {
+    padding-top: 4em;
+    padding-bottom: 4em;
+    background-color: #194f90;
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.lSSlideOuter {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.lSSlideWrapper {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.lSSlideOuter {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.lightSlider {
+    overflow: hidden;
+}
+
+.stat {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stat .context {
+    color: #a1d1fe;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.stat .value {
+    color: #fff;
+    font-family: "Univers LT W01_49 Light Ult Cn";
+    border-bottom: 2px solid #a1d1fe;
+    font-size: 75px;
+    line-height: 1em;
+    margin-bottom: 6px;
+}
+
+p {
+    padding: 35px;
+}
