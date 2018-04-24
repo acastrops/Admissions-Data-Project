@@ -1,3 +1,6 @@
+
+/* Carousel for gpa-banner
+https://www.w3schools.com/bootstrap/bootstrap_carousel.asp */
 .stat-carousel {
     padding-top: 4em;
     padding-bottom: 4em;
@@ -45,12 +48,14 @@
     margin-right: auto;
 }
 
+/* Container for the 3 elements: GPA, SAT, ACT */
 .stat .context {
     color: #a1d1fe;
     font-size: 14px;
     text-transform: uppercase;
 }
 
+/* Contains "1200-1360" for SAT, for example  */
 .stat .value {
     color: #fff;
     font-family: "Univers LT W01_49 Light Ult Cn";
@@ -60,6 +65,11 @@
     margin-bottom: 6px;
 }
 
-p {
-    padding: 35px;
+/* Not sure what this is for */
+.section-heading {
+    margin-bottom: 0em;
+    max-width: 555px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
