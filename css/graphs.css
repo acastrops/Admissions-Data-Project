@@ -1,3 +1,9 @@
 .bar {
 	fill: steelblue;
 }
+
+.p0-title {
+	font-family: "Univers LT W01_67 Bold_1476016", sans-serif;
+	text-transform: uppercase;
+	color: #003087;
+}

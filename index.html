@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="css/graphs.css">
-	  <link rel="stylesheet" type="text/css" href="css/chances.css">
     <link rel="stylesheet" type="text/css" href="css/admissions.css">
 
     <title>NCF Student Profile</title>
@@ -64,14 +63,12 @@
           <div class="card-body" id="scores-body">
             <h1>Numbers don't lie, check the scoreboard.</h1>
             <div class="row">
-              <div class="graph" class="col-lg-4">
+              <div class="graph" class="col-lg-6">
                 <div id="graph-GPA" ></div>
-              </div>
-              <div class="graph" class="col-lg-4">
-                <div id="graph-SAT" ></div>
-              </div>
-              <div class="graph" class="col-lg-4">
                 <div id="graph-ACT" ></div>
+              </div>
+              <div class="graph" class="col-lg-6">
+                <div id="graph-SAT" ></div>
               </div>
             </div>
           </div>
@@ -92,15 +89,17 @@
             <div class="row">
               <div class="graph" class="col-lg-4">
                 <div id="top6-grad-aoc-donut"></div>
-              </div>
-              <div class="graph" class="col-lg-4">
                 <div id="aoc-division-donut"></div>
               </div>
               <div class="graph" class="col-lg-4">
                 <div id="faculty-race-donut"></div>
+                <div id="faculty-gender-donut"></div>
               </div>
               <div class="graph" class="col-lg-4">
-                <div id="faculty-gender-donut"></div>
+                
+              </div>
+              <div class="graph" class="col-lg-4">
+                
               </div>			  
             </div>
           </div>
@@ -108,9 +107,7 @@
 
         <div class="collapse" id="finaid-collapse">
           <div class="card-header modal-header" id="finaid-header">
-            <h5 class="mb-0">
-              Financial Aid
-            </h5>
+            <h5 class="mb-0">Financial Aid</h5>
             <button type="button" class="close" aria-label="Close" data-toggle="collapse"
                   data-target="#finaid-collapse" aria-controls="finaid-collapse">
               <span aria-hidden="true">&times;</span>
@@ -123,29 +120,24 @@
 
         <div class="collapse" id="demog-collapse">
           <div class="card-header modal-header" id="demog-header">
-            <h5>
-              Demographics
-            </h5>
+            <h3>Demographics</h3>
             <button type="button" class="close" aria-label="Close" data-toggle="collapse"
                   data-target="#demog-collapse" aria-controls="demog-collapse">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="card-body" id="demog-body">
-            <h1>Venezuelan and Indian, 'Rican and Dominican, Japanese or Portuguese, Quarter of Brazilian, White and Korean, Black and Pinay</h1>
-            <div class="row">
-              <div class="graph" class="col-lg-4">
+            <h2>In a Class by Itself</h2>
+            <p>New College is an intellectual community of students who value individuality while discovering passions, pursuing ideals and forming lifelong bonds.</p>
+            <div class="row justify-content-around">
+              <div class="graph" class="col-lg-6">
                 <div id="race-donut"></div>
-              </div>
-              <div class="graph" class="col-lg-4">
-                <div id="gender-donut"></div>
-              </div>
-              <div class="graph" class="col-lg-4">
                 <div id="secondary-school-type-donut"></div>
               </div>
-              <div class="graph" class="col-lg-4">
+              <div class="graph" class="col-lg-6">
+                <div id="gender-donut"></div>
                 <div id="specialized-hs-donut"></div>
-              </div>			  
+              </div>
             </div>
           </div>
         </div>
@@ -232,11 +224,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- using thicc jquery -->
-    <script
-      src="http://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 

@@ -1,10 +1,15 @@
+function formatTitle(text) {
+	return {
+		text: text.toUpperCase(),
+		fontSize: 22,
+		font: "Univers LT W01_67 Bold_1476016"
+	}
+}
+
+// Bring out the donuts
 var race_donut = new d3pie("race-donut", {
 	"header": {
-		"title": {
-			"text": "Race/Ethnicity",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Race / Ethnicity"),
 		"subtitle": {
 			"color": "#999999",
 			"fontSize": 10,
@@ -13,7 +18,7 @@ var race_donut = new d3pie("race-donut", {
 		"location": "pie-center",
 		"titleSubtitlePadding": 10
 	},
-/* 	"footer": {
+	/* 	"footer": {
 		"text": "* This was curious. We're not sure why several people regard Saskatoon as a Top 15 Fear.",
 		"color": "#999999",
 		"fontSize": 10,
@@ -99,11 +104,7 @@ var race_donut = new d3pie("race-donut", {
 
 var gender_donut = new d3pie("gender-donut", {
 	"header": {
-		"title": {
-			"text": "Gender",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Gender"),
 		"subtitle": {
 			"color": "#999999",
 			"fontSize": 10,
@@ -189,11 +190,7 @@ var gender_donut = new d3pie("gender-donut", {
 
 var secondary_school_type_donut = new d3pie("secondary-school-type-donut", {
 	"header": {
-		"title": {
-			"text": "School Type",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("School Type"),
 		"subtitle": {
 			"text": "Secondary School Type",
 			"color": "#7e6e6e",
@@ -299,11 +296,7 @@ var secondary_school_type_donut = new d3pie("secondary-school-type-donut", {
 
 var specialized_hs_donut = new d3pie("specialized-hs-donut", {
 	"header": {
-		"title": {
-			"text": "Curriculum",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Curriculum"),
 		"subtitle": {
 			"color": "#7e6e6e",
 			"fontSize": 12,
@@ -393,11 +386,7 @@ var specialized_hs_donut = new d3pie("specialized-hs-donut", {
 
 var top6_grad_aoc = new d3pie("top6-grad-aoc-donut", {
 	"header": {
-		"title": {
-			"text": "AOCs",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("AOCs"),
 		"subtitle": {
 			"color": "#7e6e6e",
 			"fontSize": 12,
@@ -502,11 +491,7 @@ var top6_grad_aoc = new d3pie("top6-grad-aoc-donut", {
 
 var aoc_division_donut = new d3pie("aoc-division-donut", {
 	"header": {
-		"title": {
-			"text": "Division",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Division"),
 		"subtitle": {
 			"color": "#7e6e6e",
 			"fontSize": 12,
@@ -612,11 +597,7 @@ var aoc_division_donut = new d3pie("aoc-division-donut", {
 
 var faculty_race_donut = new d3pie("faculty-race-donut", {
 	"header": {
-		"title": {
-			"text": "Faculty",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Faculty"),
 		"subtitle": {
 			"text": "Race/Ethnicity",
 			"color": "#7e6e6e",
@@ -717,11 +698,7 @@ var faculty_race_donut = new d3pie("faculty-race-donut", {
 
 var faculty_gender_donut = new d3pie("faculty-gender-donut", {
 	"header": {
-		"title": {
-			"text": "Faculty",
-			"fontSize": 29,
-			"font": "open sans"
-		},
+		"title": formatTitle("Faculty"),
 		"subtitle": {
 			"text": "Gender",
 			"color": "#7e6e6e",
@@ -804,3 +781,37 @@ var faculty_gender_donut = new d3pie("faculty-gender-donut", {
 	},
 	"callbacks": {}
 });
+
+// Handle Redraw Listeners
+
+function addRedrawListener(pie){
+	// since you can't wrap text on a graph if it doesn't render, add an event listener
+    // https://stackoverflow.com/a/37168579/2856889
+
+    var mom = $(pie.element).closest(".collapse")[0];
+    var blocker = mom;
+
+    var previousValue = getComputedStyle(blocker).display;
+
+    var observer = new MutationObserver( function(mutations){
+        mutations.forEach( function(mutation) {
+            if (mutation.attributeName !== 'style') return;
+            var currentValue = getComputedStyle(blocker).display;
+            if (currentValue !== previousValue) {
+               if (previousValue === "none" && currentValue !== "none") {
+                 pie.redraw();
+               }
+
+               previousValue = getComputedStyle(blocker).display;
+            }
+        });
+    });
+
+    observer.observe(blocker, { attributes: true });
+}
+
+const pieCharts = [race_donut, gender_donut, 
+secondary_school_type_donut, specialized_hs_donut,
+secondary_school_type_donut, top6_grad_aoc, aoc_division_donut];
+
+pieCharts.forEach(addRedrawListener);

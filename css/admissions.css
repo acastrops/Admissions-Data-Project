@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
 	color: #003087;
 }
 
-nav, header h1, h2{
+nav h1, header h1, nav h2, header h2{
 	color: white;
 }
 
