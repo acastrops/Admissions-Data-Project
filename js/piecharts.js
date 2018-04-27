@@ -391,7 +391,7 @@ var specialized_hs_donut = new d3pie("specialized-hs-donut", {
 	"callbacks": {}
 });
 
-var top6_grad_aoc = new d3pie("top6-grad-aoc", {
+var top6_grad_aoc = new d3pie("top6-grad-aoc-donut", {
 	"header": {
 		"title": {
 			"text": "AOCs",

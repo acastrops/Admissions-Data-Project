@@ -1,3 +1,131 @@
-.bar {
-	fill: steelblue;
+@import "https://fast.fonts.net/cssapi/e0069a2f-008d-45b4-bcfa-9494754a51bc.css";
+
+
+/* Fonts */
+/* Reminder:
+	Font families are:
+	Univers LT W01_55 Roman1475956
+	Univers LT W01_67 Bold_1476016
+	Univers LT W01_49 Light Ult Cn
+	Adobe Garamond W08
+*/
+
+body {
+	font-family: "Univers LT W01_55 Roman1475956";
 }
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Univers LT W01_67 Bold_1476016", sans-serif;
+	text-transform: uppercase;
+	color: #003087;
+}
+
+nav, header h1, h2{
+	color: white;
+}
+
+
+/* Photos */
+header {
+	background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); 
+	background-position: 33% 90%;
+}
+
+#scores-button {
+	background-image: url(https://photos.smugmug.com/photos/i-LDVhpgV/0/1280x720!/i-LDVhpgV-1280x720!.jpg); 
+	background-position: 33% 75%;
+}
+
+#aoc-button {
+	background-image: url(https://photos.smugmug.com/photos/i-NmjBKKw/0/1280x720!/i-NmjBKKw-1024x333.jpg);	
+	background-position: 90% 15%;
+}
+
+#finaid-button {
+	background-image: url(https://photos.smugmug.com/photos/i-3Q35DwX/0/1280x720!/i-3Q35DwX-1024x333.jpg); 
+	background-position: 70% 60%;
+}
+
+#demog-button {
+	background-image: url(https://photos.smugmug.com/photos/i-QqVxcqL/0/1280x720!/i-QqVxcqL-1280x720.jpg); 
+	background-position: 95% 27%;
+}
+
+/* Layout tweaks */
+
+
+
+/* Carousel for gpa-banner
+https://www.w3schools.com/bootstrap/bootstrap_carousel.asp */
+.stat-carousel {
+    padding-top: 4em;
+    padding-bottom: 4em;
+    background-color: #194f90;
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
+
+.lSSlideOuter {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.lSSlideWrapper {
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.lSSlideOuter {
+    overflow: hidden;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.lightSlider {
+    overflow: hidden;
+}
+
+.stat {
+    padding-top: 2em;
+    padding-bottom: 2em;
+    max-width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Container for the 3 elements: GPA, SAT, ACT */
+.stat .context {
+    color: #a1d1fe;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+/* Contains "1200-1360" for SAT, for example  */
+.stat .value {
+    color: #fff;
+    font-family: "Univers LT W01_49 Light Ult Cn";
+    border-bottom: 2px solid #a1d1fe;
+    font-size: 75px;
+    line-height: 1em;
+    margin-bottom: 6px;
+}
+
+/* Not sure what this is for */
+.section-heading {
+    margin-bottom: 0em;
+    max-width: 555px;
+    margin-left: auto;
+    margin-right: auto;
+}
+

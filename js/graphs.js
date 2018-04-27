@@ -9,10 +9,6 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName, na_flag 
   //const divWidth = parseInt(div.style("width"), 10) || 400
   const divWidth = 400;
 
-  console.log(div.style("height"));
-
-  console.log(divWidth, divHeight);
-
   var margin = {top: 20, right: 20, bottom: 40, left: 40},
       width = divWidth - margin.left - margin.right,
       height = divHeight - margin.top - margin.bottom;
@@ -39,7 +35,6 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName, na_flag 
   d3.csv(dataURL, function(error, data) {
     if (error) throw error;
 
-    console.log(data);
     // format the data
     data.forEach(function(d) {
       d[yColumnName] = +d[yColumnName];
