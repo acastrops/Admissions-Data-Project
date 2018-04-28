@@ -9,7 +9,7 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName, na_flag 
   //const divWidth = parseInt(div.style("width"), 10) || 400
   const divWidth = 400;
 
-  var margin = {top: 20, right: 20, bottom: 40, left: 40},
+  var margin = {top: 20, right: 20, bottom: 60, left: 40},
       width = divWidth - margin.left - margin.right,
       height = divHeight - margin.top - margin.bottom;
 
@@ -64,6 +64,9 @@ function createBarGraph(divSelector, dataURL, xColumnName, yColumnName, na_flag 
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "xaxis axis")
         .call(d3.axisBottom(x));
+
+    svg.selectAll(".xaxis text")
+      .attr("transform", "rotate(45) translate(20, 2.5)")
 
     // svg.selectAll(".xaxis text")  // select all the text elements for the xaxis
     //      .attr("transform", "translate(" + this.getBBox().height*-2 + "," + this.getBBox().height + ")rotate(-45)";

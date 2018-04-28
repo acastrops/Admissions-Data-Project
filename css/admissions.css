@@ -1,5 +1,6 @@
 @import "https://fast.fonts.net/cssapi/e0069a2f-008d-45b4-bcfa-9494754a51bc.css";
 
+/* Color reminders: #003087 #a1d1fe; */
 
 /* Fonts */
 /* Reminder:
@@ -24,6 +25,27 @@ nav h1, header h1, nav h2, header h2{
 	color: white;
 }
 
+#chances .form-group input{
+	border: none;
+	background: transparent;
+	color: white;
+    font-family: "Univers LT W01_49 Light Ult Cn";
+    border-bottom: 2px solid #a1d1fe;
+    font-size: 75px;
+    line-height: 1em;
+    margin-bottom: 6px;
+}
+
+#chances .context {
+    color: #a1d1fe;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+::placeholder {
+	color: red;
+	opacity: 1;
+}
 
 /* Photos */
 header {
@@ -51,9 +73,21 @@ header {
 	background-position: 95% 27%;
 }
 
-/* Layout tweaks */
+/* Bar Graph */
 
+.bar {
+	fill: #003087;
+}
 
+svg text {
+	font-family: "Univers LT W01_55 Roman1475956";
+}
+
+.p0-title {
+	font-family: "Univers LT W01_67 Bold_1476016", sans-serif;
+	text-transform: uppercase;
+	color: #003087;
+}
 
 /* Carousel for gpa-banner
 https://www.w3schools.com/bootstrap/bootstrap_carousel.asp */
@@ -128,4 +162,3 @@ https://www.w3schools.com/bootstrap/bootstrap_carousel.asp */
     margin-left: auto;
     margin-right: auto;
 }
-
