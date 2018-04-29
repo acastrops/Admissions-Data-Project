@@ -62,13 +62,22 @@
           </div>
           <div class="card-body" id="scores-body">
             <h1>Numbers don't lie, check the scoreboard.</h1>
+            <p>New College of Florida practices selective admission, seeking those students who are able and eager to take responsibility for their own education, and who will benefit from the College’s demanding academic program and flexible curriculum.</p>
+
+            <p>The Dean of Admissions and Financial Aid limits the number of students selected every year. Satisfaction of minimum State University System admission requirements does not guarantee acceptance; preference for admission is given to applicants who demonstrate great academic promise.</p>
             <div class="row justify-content-around">
               <div class="graph" class="col-lg-6">
-                <div id="graph-GPA" ></div>
-                <div id="graph-ACT" ></div>
+                <div id="graph-GPA">
+                  <h6>GPA, Admitted Students</h6>
+                </div>
+                <div id="graph-ACT">
+                  <h6>ACT Score, Admitted Students</h6>
+                </div>
               </div>
               <div class="graph" class="col-lg-6">
-                <div id="graph-SAT" ></div>
+                <div id="graph-SAT">
+                  <h6>SAT Score, Admitted Students</h6>
+                </div>
               </div>
             </div>
           </div>
@@ -85,8 +94,9 @@
             </button>
           </div>
           <div class="card-body" id="aoc-body">
-            <h1>Economics is the best AOC!</h1>
-            <div class="row">
+            <h1>Intellectually Rigorous. Innovative. Engaging.</h1>
+            <p>If a free exchange of ideas, highly individualized collaboration with faculty and in-depth thinking appeal to you, you belong at New College of Florida.</p>
+            <div class="row justify-content-around">
               <div class="graph" class="col-lg-6">
                 <div id="top6-grad-aoc-donut"></div>
                 <div id="aoc-division-donut"></div>
@@ -108,7 +118,10 @@
             </button>
           </div>
           <div class="card-body" id="finaid-body">
-            <h1>You don't have to be rich to be my girl</h1>
+            <h1>Ninety Percent of Students Receive Financial Assistance</h1>
+            <p>
+              At New College, we are proud of the fact that 90 percent of our students receive some form of financial assistance. Several prestigious publications have recognized our combined strength of academic quality and low cost.
+            </p>
           </div>
         </div>
 
@@ -150,13 +163,16 @@
 		
         <div class="collapse show card-body" id="chances-collapse">
           <form id="chances">
-            <div class="form-group stat-carousel">
-              <div class="form-row">
+            <div class="stat-carousel">
+              <p class="text-light">
+                Enter your details and see how similar students fared in past New College admissions cycles.
+              </p>
+              <div class="row justify-content-around">
                 <div class="col-md-4"><div class="context">*Weighted 0.5 pt. for honors; 1 pt. for dual enrollment/AP/IB/AICE.</div></div>
                 <div class="col-md-4"></div>
                 <div class="col-md-4"></div>
               </div>
-              <div class="form-row container">
+              <div class="row justify-content-around">
                 <div class="form-group col-md-4">
                   <input type="number" class="form-control" placeholder="3.71 - 4.31" id="gpa"
                   required="true" step="0.01" min="0.0" max="5.0">
@@ -173,18 +189,15 @@
                   <label for="act" class="h3">ACT Score</label>
                 </div>
               </div>
+              <div class="form-group">
+                <button class="btn btn-light" type="submit" id="chances-submit">How do I fare?</button>
+              </div>
+            </form>
+            <div id="model-result" class="d-none fade text-light">
+              <p>
+                We would expect <strong id="model-result-pct">xx%</strong> of applicants with a similar profile to be accepted.
+              </p>
             </div>
-            <div class="form-group">
-              <button class="btn btn-primary" type="submit" id="chances-submit">How do I fare?</button>
-            </div>
-          </form>
-          <p>
-            Enter your details and see how similar students fared in past New College admissions cycles.
-          </p>
-          <div id="model-result" class="d-none fade">
-            <p>
-              We would expect <strong id="model-result-pct">xx%</strong> of applicants with a similar profile to be accepted.
-            </p>
           </div>
         </div>
 

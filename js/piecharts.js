@@ -812,6 +812,7 @@ function addRedrawListener(pie){
 
 const pieCharts = [race_donut, gender_donut, 
 secondary_school_type_donut, specialized_hs_donut,
-secondary_school_type_donut, top6_grad_aoc, aoc_division_donut];
+secondary_school_type_donut, top6_grad_aoc, aoc_division_donut,
+faculty_race_donut, faculty_gender_donut];
 
 pieCharts.forEach(addRedrawListener);
